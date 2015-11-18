@@ -6,10 +6,11 @@ use Bican\Roles\Traits\Slugable;
 use Illuminate\Database\Eloquent\Model;
 use Bican\Roles\Traits\RoleHasRelations;
 use Bican\Roles\Contracts\RoleHasRelations as RoleHasRelationsContract;
-use App;
-use App\Lib\ModelTraits;
+use App\BaseModel;
+use App\Lib\ModelTraits\CreatorTrait;
+use App\Lib\ModelTraits\UpdaterTrait;
 
-class Role extends App\BaseModel implements RoleHasRelationsContract
+class Role extends BaseModel implements RoleHasRelationsContract
 {
     use Slugable, RoleHasRelations, CreatorTrait, UpdaterTrait;
 
