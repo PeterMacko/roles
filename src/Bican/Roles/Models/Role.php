@@ -1,5 +1,5 @@
 <?php
-
+//test
 namespace Bican\Roles\Models;
 
 use Bican\Roles\Traits\Slugable;
