@@ -9,7 +9,7 @@ use Bican\Roles\Contracts\RoleHasRelations as RoleHasRelationsContract;
 use App;
 use App\Lib\ModelTraits;
 
-class App\Role extends BaseModel implements RoleHasRelationsContract
+class Role extends App\BaseModel implements RoleHasRelationsContract
 {
     use Slugable, RoleHasRelations, CreatorTrait, UpdaterTrait;
 
