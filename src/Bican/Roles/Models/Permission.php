@@ -6,10 +6,14 @@ use Bican\Roles\Traits\Slugable;
 use Illuminate\Database\Eloquent\Model;
 use Bican\Roles\Traits\PermissionHasRelations;
 use Bican\Roles\Contracts\PermissionHasRelations as PermissionHasRelationsContract;
+use App\BaseModel;
+use App\Lib\ModelTraits\CreatorTrait;
+use App\Lib\ModelTraits\UpdaterTrait;
 
-class Permission extends Model implements PermissionHasRelationsContract
+
+class Permission extends BaseModel implements PermissionHasRelationsContract
 {
-    use Slugable, PermissionHasRelations;
+    use Slugable, PermissionHasRelations, CreatorTrait, UpdaterTrait;
 
     /**
      * The attributes that are mass assignable.
