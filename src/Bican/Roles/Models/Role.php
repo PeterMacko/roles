@@ -1,15 +1,17 @@
 <?php
-//test
+
 namespace Bican\Roles\Models;
 
 use Bican\Roles\Traits\Slugable;
 use Illuminate\Database\Eloquent\Model;
 use Bican\Roles\Traits\RoleHasRelations;
 use Bican\Roles\Contracts\RoleHasRelations as RoleHasRelationsContract;
+use App;
+use App\Lib\ModelTraits;
 
-class Role extends Model implements RoleHasRelationsContract
+class Role extends BaseModel implements RoleHasRelationsContract
 {
-    use Slugable, RoleHasRelations;
+    use Slugable, RoleHasRelations, CreatorTrait, UpdaterTrait;
 
     /**
      * The attributes that are mass assignable.
