@@ -268,11 +268,11 @@ trait HasRoleAndPermission
             return $this->pretend('allowed');
         }
 
-        if ($owner === true && $entity->{$ownerColumn} == $this->id) {
+        if ($owner === true && $entity->{$ownerColumn} == $this->id && $this->isAllowed($providedPermission, $entity)) {
             return true;
         }
 
-        return $this->isAllowed($providedPermission, $entity);
+        return false;
     }
 
     /**
