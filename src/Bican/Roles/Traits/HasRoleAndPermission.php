@@ -268,8 +268,32 @@ trait HasRoleAndPermission
             return $this->pretend('allowed');
         }
 
-        if ($owner === true && $entity->{$ownerColumn} == $this->id && $this->isAllowed($providedPermission, $entity)) {
+        if (
+            $this->mayOne($providedPermission) && $owner === true && $entity->{$ownerColumn} == $this->id &&
+            $this->isAllowedOrNotRestricted($providedPermission, $entity)
+        ) {
             return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Check if the user is allowed to manipulate with provided entity or if given permission is not restricted to given entity
+     *
+     * @param string $providedPermission
+     * @param \Illuminate\Database\Eloquent\Model $entity
+     * @return bool
+     */
+    protected function isAllowedOrNotRestricted($providedPermission, Model $entity)
+    {
+        foreach ($this->getPermissions() as $permission) {
+            if (
+                ($permission->id == $providedPermission || $permission->slug === $providedPermission) &&
+                ($permission->model == '' || get_class($entity) == $permission->model)
+            ) {
+                return true;
+            }
         }
 
         return false;
